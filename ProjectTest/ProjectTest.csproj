@@ -130,6 +130,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DB\Admin.cs">
       <DependentUpon>ZeroHungerDB.tt</DependentUpon>
     </Compile>
@@ -166,6 +167,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\RestaurantModel.cs" />
+    <Compile Include="Models\UserAdmin.cs" />
+    <Compile Include="Models\UserEmployee.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\UserRestaurant.cs" />
+    <Compile Include="Operations\AdminOperations.cs" />
+    <Compile Include="Operations\EmployeeOperations.cs" />
+    <Compile Include="Operations\RestaurantOperations.cs" />
+    <Compile Include="Operations\UserOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,10 +240,14 @@
     <Content Include="Views\Shared\_LayoutRegistration.cshtml" />
     <Content Include="Views\Employee\Register.cshtml" />
     <Content Include="Views\Restaurant\Register.cshtml" />
+    <Content Include="Views\Shared\_AfterLoginEmployee.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Shared\_AfterLoginRestaurant.cshtml" />
+    <Content Include="Views\Restaurant\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

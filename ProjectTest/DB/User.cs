@@ -26,6 +26,7 @@ namespace ProjectTest.DB
         public string Password { get; set; }
         public string User_Type { get; set; }
         public string Email { get; set; }
+        public string Is_Approved { get; set; }
     
         public virtual ICollection<Admin> Admins { get; set; }
         public virtual ICollection<Employee> Employees { get; set; }

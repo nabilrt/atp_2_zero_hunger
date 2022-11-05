@@ -1,10 +1,10 @@
-﻿
+﻿@model ProjectTest.Models.UserRestaurant
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
 }
 
-<form method="post">
+<form action="" method="post">
     <div class="row">
         <div class="col-md-6">
             <label for="exampleInputUsername1" class="form-label">Username</label>
@@ -25,25 +25,35 @@
             <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
         </div>
     </div> <br />
-    <div class="row">
-        <div class="col-md-12">
-            <label for="userPassword" class="form-label">Restaurant Location</label>
-            <select class="form-select" name="Location">
-                <option value="">Choose an Option</option>
-                <option value="Gulshan">Gulshan</option>
-                <option value="Badda">Badda</option>
-                <option value="Bashundhara">Bashundhara R/A</option>
-                <option value="Baridhara">Baridhara</option>
-                <option value="Kuril">Kuril</option>
-                <option value="Mohammadpur">Mohammadpur</option>
-                <option value="Dhanmondi">Dhanmondi</option>
-            </select>
-        </div>
-    </div>
+           <div class="row">
+               <div class="col-md-6">
+                   <label for="userPassword" class="form-label">Restaurant Location</label>
+                   <select class="form-select" name="Location">
+                       <option value="">Choose an Option</option>
+                       <option value="Gulshan">Gulshan</option>
+                       <option value="Badda">Badda</option>
+                       <option value="Bashundhara">Bashundhara R/A</option>
+                       <option value="Baridhara">Baridhara</option>
+                       <option value="Kuril">Kuril</option>
+                       <option value="Mohammadpur">Mohammadpur</option>
+                       <option value="Dhanmondi">Dhanmondi</option>
+                   </select>
+               </div>
+               <div class="col-md-6">
+                   <label for="userPassword" class="form-label">Restaurant Type</label>
+                   <select class="form-select" name="Restaurant_Type">
+                       <option value="">Choose an Option</option>
+                       <option value="Bangla">Bangla</option>
+                       <option value="Chinese">Chinese</option>
+                       <option value="Indian">Indian</option>
+                       <option value="Thai">Chinese</option>
+                   </select>
+               </div>
+           </div>
 
     <br />
     <div>
-        <a href="../../dashboard.html" class="btn btn-primary text-white me-2 mb-2 mb-md-0">Sign up</a>
+        <input type="submit" value="Sign Up" class="btn btn-primary" />
     </div>
     <a href="login.html" class="d-block mt-3 text-muted">Already a user? Sign in</a>
 </form>

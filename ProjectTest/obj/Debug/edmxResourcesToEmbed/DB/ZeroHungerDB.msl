@@ -59,6 +59,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="ZeroHungerDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Is_Approved" ColumnName="Is_Approved" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Password" ColumnName="Password" />

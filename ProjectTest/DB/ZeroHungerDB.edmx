@@ -64,6 +64,7 @@
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="User_Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Is_Approved" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Admins_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -226,6 +227,7 @@
           <NavigationProperty Name="Admins" Relationship="Self.FK_Admins_Users" FromRole="Users" ToRole="Admins" />
           <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Users" FromRole="Users" ToRole="Employees" />
           <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurants_Users" FromRole="Users" ToRole="Restaurants" />
+          <Property Name="Is_Approved" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Admins_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -379,6 +381,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ZeroHungerDBModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Is_Approved" ColumnName="Is_Approved" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

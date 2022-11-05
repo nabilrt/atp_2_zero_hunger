@@ -69,6 +69,7 @@
     <NavigationProperty Name="Admins" Relationship="Self.FK_Admins_Users" FromRole="Users" ToRole="Admins" />
     <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Users" FromRole="Users" ToRole="Employees" />
     <NavigationProperty Name="Restaurants" Relationship="Self.FK_Restaurants_Users" FromRole="Users" ToRole="Restaurants" />
+    <Property Name="Is_Approved" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Admins_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
