@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
+}
+
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username" name="Username">
+        </div>
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Full Name" name="Name">
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="userEmail" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="userEmail" placeholder="Email" name="Email">
+        </div> 
+        <div class="col-md-6">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="userPassword" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="userPassword" autocomplete="current-password" name="DOB">
+        </div>
+        <div class="col-md-6">
+            <label for="userPassword" class="form-label">Gender</label>
+            <select class="form-select" name="Gender">
+                <option value="">Choose An Option</option>
+                <option value="Male">Male</option>
+                <option value="Male">Female</option>
+            </select>
+
+        </div>
+    </div>
+   
+    <br />
+    <div>
+        <a href="../../dashboard.html" class="btn btn-primary text-white me-2 mb-2 mb-md-0">Sign up</a>
+    </div>
+    <a href="login.html" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+</form>
+
