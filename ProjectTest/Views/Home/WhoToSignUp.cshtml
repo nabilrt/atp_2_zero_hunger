@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "WhoToSignUp";
+    Layout = "~/Views/Shared/_WhoToReg.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <img src="~/assets/images/rest.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Restaurant</h5>
+                <p class="card-text mb-3">Do Collection Form Request for picking up the remaining food to help the society</p>
+                <a href="@Url.Action("Register","Restaurant")" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <img src="~/assets/images/emp.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Employee</h5>
+                <p class="card-text mb-3">Pickup the food from the restaurants to deliver and help the overall society</p>
+                <a href="@Url.Action("Register","Employee")" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <a href="@Url.Action("Login","Home")" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+</div>
+

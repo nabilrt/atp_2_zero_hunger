@@ -1,17 +1,25 @@
-﻿
+﻿@model ProjectTest.Models.UserModel
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LoginPage.cshtml";
 }
+@if (ViewBag.Error== 1)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
 
-<form class="forms-sample">
+<form class="forms-sample" action="" method="post">
     <div class="mb-3">
         <label for="userEmail" class="form-label">Username</label>
-        <input type="email" class="form-control" id="userEmail" placeholder="Username" name="Username">
+        <input type="text" class="form-control" id="userEmail" placeholder="Username" name="Username">
+        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
     </div>
     <div class="mb-3">
         <label for="userPassword" class="form-label">Password</label>
         <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="" name="Password">
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
     </div>
     <div class="form-check mb-3">
         <input type="checkbox" class="form-check-input" id="authCheck">
@@ -20,8 +28,9 @@
         </label>
     </div>
     <div>
-        <a href="../../dashboard.html" class="btn btn-primary me-2 mb-2 mb-md-0 text-white">Login</a>
+        <input type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white" value="Login"> <br />
+
     </div>
-    <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
+    <a href="@Url.Action("WhoToSignUp","Home")" class="d-block mt-3 text-muted">Not a user? Sign up</a>
 </form>
 

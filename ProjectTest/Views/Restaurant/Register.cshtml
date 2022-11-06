@@ -9,20 +9,24 @@
         <div class="col-md-6">
             <label for="exampleInputUsername1" class="form-label">Username</label>
             <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username" name="Username">
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-6">
             <label for="exampleInputUsername1" class="form-label">Restaurant Name</label>
             <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Restaurant Name" name="Name">
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div> <br />
     <div class="row">
         <div class="col-md-6">
             <label for="userEmail" class="form-label">Email address</label>
             <input type="text" class="form-control" id="userEmail" placeholder="Email" name="Email">
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-6">
             <label for="userPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div> <br />
            <div class="row">
@@ -38,6 +42,7 @@
                        <option value="Mohammadpur">Mohammadpur</option>
                        <option value="Dhanmondi">Dhanmondi</option>
                    </select>
+                   @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                </div>
                <div class="col-md-6">
                    <label for="userPassword" class="form-label">Restaurant Type</label>
@@ -48,6 +53,7 @@
                        <option value="Indian">Indian</option>
                        <option value="Thai">Chinese</option>
                    </select>
+                   @Html.ValidationMessageFor(model => model.Restaurant_Type, "", new { @class = "text-danger" })
                </div>
            </div>
 
@@ -55,6 +61,6 @@
     <div>
         <input type="submit" value="Sign Up" class="btn btn-primary" />
     </div>
-    <a href="login.html" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+    <a href="@Url.Action("Login","Home")" class="d-block mt-3 text-muted">Already a user? Sign in</a>
 </form>
 

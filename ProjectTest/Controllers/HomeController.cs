@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectTest.Models;
+using ProjectTest.Operations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,10 +20,42 @@ namespace ProjectTest.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Login(UserModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.Error = 0;
+                var details=UserOperations.CheckLogin(user.Username,user.Password);
+
+                if (details == null)
+                {
+                    ViewBag.ErrorMessage = "No Such User Found";
+                    ViewBag.Error = 1;
+                    return View();
+                }
+                else
+                {
+                    if (details.User_Type == "Admin")
+                    {
+                        Session["user_id"] = details.Id;
+                        return RedirectToAction("Index", "Admin");
+                    }
+                }
+            }
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        public ActionResult WhoToSignUp()
+        {
             return View();
         }
 

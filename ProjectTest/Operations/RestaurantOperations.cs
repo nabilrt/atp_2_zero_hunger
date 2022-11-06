@@ -63,5 +63,30 @@ namespace ProjectTest.Operations
 
             db.SaveChanges();
         }
+
+        public static List<UserRestaurant> GetUnApprovedRestaurants()
+        {
+            var db=new ZeroHungerDBEntities();
+            var rests=new List<UserRestaurant>();   
+            var unapproved=(from u in db.Users join r in db.Restaurants on u.Id equals r.User_Id where u.Is_Approved == "No" select new
+            {
+                resUsername=u.Username, resEmail=u.Email, resName=r.Name, resLocation=r.Location, resPicture=r.Picture, app_status=u.Is_Approved
+            }).ToList();
+
+            foreach(var restaurant in unapproved)
+            {
+                rests.Add(new UserRestaurant()
+                {
+                    Username = restaurant.resUsername,
+                    Email = restaurant.resEmail,
+                    Name = restaurant.resName,
+                    Location = restaurant.resLocation,
+                    Picture = restaurant.resPicture,
+                    Is_Approved = restaurant.app_status
+                });
+            }
+
+            return rests;
+        }
     }
 }

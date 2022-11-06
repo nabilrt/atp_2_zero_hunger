@@ -1,8 +1,9 @@
-﻿
+﻿@model ProjectTest.Models.UserAdmin
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
 }
 
-<h4>Welcome to Admin Dashboard</h4>
+<h4>Welcome to Admin Dashboard, @Model.Name</h4>
+
 

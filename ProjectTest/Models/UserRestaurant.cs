@@ -8,23 +8,28 @@ namespace ProjectTest.Models
 {
     public class UserRestaurant
     {
-        [Required]
+        public int Id { get; set; }
+        [Required(ErrorMessage ="Enter a suitable username")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password cannot be empty")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email cannot be empty")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name cannot be empty")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please Specify your type")]
         public string Restaurant_Type { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide the location")]
         public string Location { get; set; }
+
+        public string Is_Approved { get; set; }
+
+        public string Picture { get; set; }
 
 
 

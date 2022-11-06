@@ -1,4 +1,4 @@
-﻿
+﻿@model ProjectTest.Models.UserEmployee
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LayoutRegistration.cshtml";
@@ -9,26 +9,31 @@
         <div class="col-md-6">
             <label for="exampleInputUsername1" class="form-label">Username</label>
             <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username" name="Username">
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-6">
             <label for="exampleInputUsername1" class="form-label">Full Name</label>
             <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Full Name" name="Name">
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
     </div> <br />
     <div class="row">
         <div class="col-md-6">
             <label for="userEmail" class="form-label">Email address</label>
             <input type="text" class="form-control" id="userEmail" placeholder="Email" name="Email">
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div> 
         <div class="col-md-6">
             <label for="userPassword" class="form-label">Password</label>
             <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
         </div>
     </div> <br />
     <div class="row">
         <div class="col-md-6">
             <label for="userPassword" class="form-label">Date of Birth</label>
             <input type="date" class="form-control" id="userPassword" autocomplete="current-password" name="DOB">
+            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-6">
             <label for="userPassword" class="form-label">Gender</label>
@@ -37,14 +42,14 @@
                 <option value="Male">Male</option>
                 <option value="Male">Female</option>
             </select>
-
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
         </div>
     </div>
    
     <br />
     <div>
-        <a href="../../dashboard.html" class="btn btn-primary text-white me-2 mb-2 mb-md-0">Sign up</a>
+        <input type="submit" class="btn btn-primary text-white me-2 mb-2 mb-md-0" value="Sign Up">
     </div>
-    <a href="login.html" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+    <a href="@Url.Action("Login","Home")" class="d-block mt-3 text-muted">Already a user? Sign in</a>
 </form>
 

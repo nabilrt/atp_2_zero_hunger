@@ -61,5 +61,40 @@ namespace ProjectTest.Operations
 
             return newuser;
         }
+
+        public static UserModel CheckLogin(string username,string password)
+        {
+            var db = new ZeroHungerDBEntities();
+            var user=(from u in db.Users where u.Username == username && u.Password == password select u).SingleOrDefault();
+            if (user == null)
+            {
+                return null;
+            }
+
+            var userDetails = GetUser(user.Id);
+
+            return userDetails;
+
+        }
+
+        public static UserAdmin getAdminDetails(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            var uadmin = new UserAdmin();
+            var adminDetails=(from u in db.Users join a in db.Admins on u.Id equals a.User_Id where u.Id == id select new
+            {
+                adminEmail=u.Email, adminPassword=u.Password,adminUsername=u.Username,adminDOB=a.DOB,adminPicture=a.Picture, adminName=a.Name,adminId=a.Id
+            }).SingleOrDefault();
+            uadmin.Email = adminDetails.adminEmail;
+            uadmin.Password = adminDetails.adminPassword;
+            uadmin.User_Id = id;
+            uadmin.Username = adminDetails.adminUsername;
+            uadmin.DOB = adminDetails.adminDOB;
+            uadmin.Picture = adminDetails.adminPicture;
+            uadmin.Name = adminDetails.adminName;
+            uadmin.Id = adminDetails.adminId;
+
+            return uadmin;
+        }
     }
 }

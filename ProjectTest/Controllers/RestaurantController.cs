@@ -40,7 +40,7 @@ namespace ProjectTest.Controllers
                 restaurant.Name=ur.Name;
                 restaurant.Restaurant_Type=ur.Restaurant_Type;
                 restaurant.Location=ur.Location;
-                restaurant.Picture = "~/assests/default/restaurant.png";
+                restaurant.Picture = "~/assets/default/restaurant.png";
                 restaurant.User_Id=newUser.Id;
 
                 RestaurantOperations.Create(restaurant);
