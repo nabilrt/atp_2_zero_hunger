@@ -2,6 +2,8 @@
 using ProjectTest.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 
@@ -95,6 +97,27 @@ namespace ProjectTest.Operations
             uadmin.Id = adminDetails.adminId;
 
             return uadmin;
+        }
+
+        public static UserModel approveRestaurant(User res)
+        {
+            var db = new ZeroHungerDBEntities();
+            var restaurant = (from u in db.Users where u.Id == res.Id select u).SingleOrDefault();
+         //   var restu = new UserModel();
+            //   restu = db.Users.Find(id);
+            
+            db.Entry(restaurant).CurrentValues.SetValues(res);
+            
+            db.SaveChanges();
+            var rest=GetUser(res.Id);
+            if (rest != null)
+                return rest;
+            else
+                return null;
+            
+
+            
+
         }
     }
 }

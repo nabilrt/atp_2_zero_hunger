@@ -70,7 +70,7 @@ namespace ProjectTest.Operations
             var rests=new List<UserRestaurant>();   
             var unapproved=(from u in db.Users join r in db.Restaurants on u.Id equals r.User_Id where u.Is_Approved == "No" select new
             {
-                resUsername=u.Username, resEmail=u.Email, resName=r.Name, resLocation=r.Location, resPicture=r.Picture, app_status=u.Is_Approved
+                resUsername=u.Username, resEmail=u.Email, resName=r.Name, resLocation=r.Location, resPicture=r.Picture, app_status=u.Is_Approved,resUserId=r.User_Id,
             }).ToList();
 
             foreach(var restaurant in unapproved)
@@ -82,7 +82,8 @@ namespace ProjectTest.Operations
                     Name = restaurant.resName,
                     Location = restaurant.resLocation,
                     Picture = restaurant.resPicture,
-                    Is_Approved = restaurant.app_status
+                    Is_Approved = restaurant.app_status,
+                    User_Id=restaurant.resUserId
                 });
             }
 

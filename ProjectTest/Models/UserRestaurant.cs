@@ -31,6 +31,8 @@ namespace ProjectTest.Models
 
         public string Picture { get; set; }
 
+        public int User_Id { get; set; }
+
 
 
     }

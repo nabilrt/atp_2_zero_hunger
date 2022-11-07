@@ -26,5 +26,7 @@ namespace ProjectTest.Models
 
         public string Is_Approved { get; set; }
 
+        public int User_Id { get; set; }
+
     }
 }
