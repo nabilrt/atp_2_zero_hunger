@@ -198,34 +198,55 @@ namespace ProjectTest.Controllers
         [HttpPost]
         public ActionResult EditProfile(UserAdmin ua)
         {
-            var useradmin = new UserAdmin();
-            useradmin.Id = ua.Id;
-            useradmin.Username = ua.Username;
-            useradmin.User_Id = ua.User_Id;
-            useradmin.Email = ua.Email;
-            useradmin.Password = ua.Password;
-            useradmin.Name = ua.Name;
+            if (ModelState.IsValid) {
+                var useradmin = new UserAdmin();
+                useradmin.Id = ua.Id;
+                useradmin.Username = ua.Username;
+                useradmin.User_Id = ua.User_Id;
+                useradmin.Email = ua.Email;
+                useradmin.Password = ua.Password;
+                useradmin.Name = ua.Name;
 
-            var user = new User();
-            user.Id = ua.User_Id;
-            user.Username = ua.Username;
-            user.Email = ua.Email;
-            user.Password = ua.Password;
+                var person = UserOperations.GetUser(ua.User_Id);
+                var adm = UserOperations.getAdminDetails(ua.User_Id);
 
-            var admin = new Admin();
-            admin.Id = ua.Id;
-            admin.Name = ua.Name;
+                var user = new User();
+                user.Id = ua.User_Id;
+                user.Username = ua.Username;
+                user.Email = ua.Email;
+                user.Password = ua.Password;
+                user.Is_Approved = person.Is_Approved;
+                user.User_Type = person.User_Type;
 
+                var admin = new Admin();
+                admin.Id = ua.Id;
+                admin.Name = ua.Name;
+                admin.User_Id = ua.User_Id;
+                admin.DOB = adm.DOB;
+                admin.Picture = adm.Picture;
 
-            if (AdminOperations.updateAdminInfo(user,admin))
-            {
-                return RedirectToAction("EditProfile");
+                if (AdminOperations.updateAdminInfo(user, admin))
+                {
+                    return RedirectToAction("ViewProfile");
 
+                }
             }
 
-            return Content("Error");
+
+            return View(ua);
         
     }
+
+        public ActionResult ViewProfile()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            return View(admin);
+        }
+
         public ActionResult Logout()
         {
             Session.Remove("user_id");

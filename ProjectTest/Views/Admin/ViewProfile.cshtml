@@ -1,0 +1,12 @@
+﻿@model ProjectTest.Models.UserAdmin
+@{
+    ViewBag.Title = "ViewProfile";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h3>My Profile</h3> <br />
+                    <img src="@Model.Picture" alt="Alternate Text" height="150" width="150" class="img-rounded" /> <br />
+                    <p><b>Name:</b> @Model.Name</p> <br />
+                    <p><b>Email:</b>@Model.Email</p> <br />
+<p><b>Date of Birth:</b>@Model.DOB</p>
+
