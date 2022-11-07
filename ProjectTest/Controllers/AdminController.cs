@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProjectTest.DB;
 using ProjectTest.Validations;
+using ProjectTest.Models;
 
 namespace ProjectTest.Controllers
 {
@@ -183,6 +184,48 @@ namespace ProjectTest.Controllers
             return Content("");
 
         }
+
+        public ActionResult EditProfile()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            return View(admin);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(UserAdmin ua)
+        {
+            var useradmin = new UserAdmin();
+            useradmin.Id = ua.Id;
+            useradmin.Username = ua.Username;
+            useradmin.User_Id = ua.User_Id;
+            useradmin.Email = ua.Email;
+            useradmin.Password = ua.Password;
+            useradmin.Name = ua.Name;
+
+            var user = new User();
+            user.Id = ua.User_Id;
+            user.Username = ua.Username;
+            user.Email = ua.Email;
+            user.Password = ua.Password;
+
+            var admin = new Admin();
+            admin.Id = ua.Id;
+            admin.Name = ua.Name;
+
+
+            if (AdminOperations.updateAdminInfo(user,admin))
+            {
+                return RedirectToAction("EditProfile");
+
+            }
+
+            return Content("Error");
+        
+    }
         public ActionResult Logout()
         {
             Session.Remove("user_id");

@@ -1,0 +1,49 @@
+﻿@model ProjectTest.Models.UserAdmin
+
+@{
+    ViewBag.Title = "Edit Profile";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h2>Edit Profile</h2> <br />
+<form action="" method="post">
+    <div class="row">
+        <div class="col-md-6">
+
+            <label class="form-label">Username</label>
+            <input type="text" value="@Model.Username" id="" name="Username" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+
+            <label class="form-label">Name</label>
+            <input type="text" value="@Model.Name" id="" name="Name" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+
+            <label class="form-label">Email</label>
+            <input type="text" value="@Model.Email" id="" name="Email" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-6">
+
+            <label class="form-label">Password</label>
+            <input type="password" value="@Model.Password" id="" name="Password" class="form-control" />
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <input type="hidden" value="@Model.User_Id" name="User_Id" />
+        </div>
+    </div>
+ <br />
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" value="Save Changes" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>
