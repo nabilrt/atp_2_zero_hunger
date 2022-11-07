@@ -21,7 +21,8 @@
             <td>@restaurants.Email</td>
             <td>@restaurants.Location</td>
             <td><span class="badge border border-danger text-danger">@restaurants.Is_Approved</span></td>
-            <td><a href="/admin/approveRestaurant/@restaurants.User_Id" class="btn btn-outline-success btn-sm"><i data-feather="check"></i></a> <a href="/admin/rejectRestaurant/@Convert.ToInt32(Session["user_id"])" class="btn btn-outline-danger btn-sm"><i data-feather="x"></i></a> </td>
+            <td><a href="/admin/approveRestaurant/@restaurants.User_Id" class="btn btn-outline-success btn-sm"><i data-feather="check"></i></a>
+            <a href="/admin/rejectRestaurant/@restaurants.Id" class="btn btn-outline-danger btn-sm"><i data-feather="x"></i></a> </td>
         </tr>
     }
 </table>
@@ -46,7 +47,8 @@
             <td>@emps.DOB</td>
             <td>@emps.Gender</td>
             <td><span class="badge border border-danger text-danger">@emps.Is_Approved</span></td>
-            <td><a href="#" class="btn btn-outline-success btn-sm"><i data-feather="check"></i></a> <a href="#" class="btn btn-outline-danger btn-sm"><i data-feather="x"></i></a></td>
+            <td><a href="/admin/approveEmployee/@emps.User_Id" class="btn btn-outline-success btn-sm"><i data-feather="check"></i></a> 
+            <a href="/admin/rejectEmployee/@emps.Id" class="btn btn-outline-danger btn-sm"><i data-feather="x"></i></a></td>
         </tr>
     }
 </table>

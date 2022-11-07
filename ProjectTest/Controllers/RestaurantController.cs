@@ -1,5 +1,6 @@
 ﻿using ProjectTest.Models;
 using ProjectTest.Operations;
+using ProjectTest.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,19 @@ using System.Web.Mvc;
 
 namespace ProjectTest.Controllers
 {
+    [RestaurantAuth]
     public class RestaurantController : Controller
     {
         // GET: Restaurant
         public ActionResult Index()
         {
-            return View();
+
+            int id = Convert.ToInt32(Session["rest_id"]);
+            var restaurant= UserOperations.getRestaurantDetails(id);
+            ViewBag.Name = restaurant.Name;
+            ViewBag.Email = restaurant.Email;
+            ViewBag.Picture = restaurant.Picture;
+            return View(restaurant);
         }
 
         [HttpGet]
@@ -51,6 +59,13 @@ namespace ProjectTest.Controllers
             
            // return View(ur); 
         
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("rest_id");
+
+            return RedirectToAction("Login", "Home");
         }
     }
 }

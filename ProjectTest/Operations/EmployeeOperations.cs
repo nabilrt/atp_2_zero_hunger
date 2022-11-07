@@ -71,11 +71,13 @@ namespace ProjectTest.Operations
                               where u.Is_Approved == "No"
                               select new
                               {
+                                  empId=e.Id,
                                   empUsername = u.Username,
                                   empEmail = u.Email,
                                   empName = e.Name,
                                   empDOB = e.DOB,
                                   empGender=e.Gender,
+                                  empUserId=e.User_Id,
                                   app_status = u.Is_Approved
                               }).ToList();
 
@@ -83,11 +85,13 @@ namespace ProjectTest.Operations
             {
                 emps.Add(new UserEmployee()
                 {
+                    Id=employee.empId,
                     Username = employee.empUsername,
                     Email = employee.empEmail,
                     Name = employee.empName,
                     DOB = employee.empDOB,
                     Gender = employee.empGender,
+                    User_Id=employee.empUserId,
                     Is_Approved = employee.app_status
                 });
             }

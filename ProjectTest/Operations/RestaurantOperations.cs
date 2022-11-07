@@ -71,12 +71,14 @@ namespace ProjectTest.Operations
             var unapproved=(from u in db.Users join r in db.Restaurants on u.Id equals r.User_Id where u.Is_Approved == "No" select new
             {
                 resUsername=u.Username, resEmail=u.Email, resName=r.Name, resLocation=r.Location, resPicture=r.Picture, app_status=u.Is_Approved,resUserId=r.User_Id,
+                resId=r.Id
             }).ToList();
 
             foreach(var restaurant in unapproved)
             {
                 rests.Add(new UserRestaurant()
                 {
+                    Id=restaurant.resId,
                     Username = restaurant.resUsername,
                     Email = restaurant.resEmail,
                     Name = restaurant.resName,
@@ -84,6 +86,7 @@ namespace ProjectTest.Operations
                     Picture = restaurant.resPicture,
                     Is_Approved = restaurant.app_status,
                     User_Id=restaurant.resUserId
+
                 });
             }
 

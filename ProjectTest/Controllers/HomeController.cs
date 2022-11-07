@@ -41,9 +41,33 @@ namespace ProjectTest.Controllers
                         Session["user_id"] = details.Id;
                         return RedirectToAction("Index", "Admin");
                     }
+                    else if(details.User_Type == "Restaurant" && details.Is_Approved == "Yes")
+                    {
+                        Session["rest_id"] = details.Id;
+                        return RedirectToAction("Index", "Restaurant");
+
+                    }else if(details.User_Type == "Restaurant" && details.Is_Approved == "No")
+                    {
+                        return RedirectToAction("NotApproved");
+                    }
+                    if (details.User_Type == "Employee" && details.Is_Approved == "Yes")
+                    {
+                        Session["emp_id"] = details.Id;
+                        return RedirectToAction("Index", "Employee");
+
+                    }
+                    else if (details.User_Type == "Employee" && details.Is_Approved == "No")
+                    {
+                        return RedirectToAction("NotApproved");
+                    }
                 }
             }
 
+            return View();
+        }
+
+        public ActionResult NotApproved()
+        {
             return View();
         }
 

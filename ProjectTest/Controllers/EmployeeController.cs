@@ -1,5 +1,6 @@
 ﻿using ProjectTest.Models;
 using ProjectTest.Operations;
+using ProjectTest.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,19 @@ using System.Web.Mvc;
 
 namespace ProjectTest.Controllers
 {
+    [EmployeeAuth]
     public class EmployeeController : Controller
     {
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+            int id = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(id);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+
+            return View(employee);
         }
 
         public ActionResult Register()
@@ -40,7 +48,7 @@ namespace ProjectTest.Controllers
                 employee.Gender = uemp.Gender;
                 employee.DOB=uemp.DOB;
                 employee.User_Id=newUser.Id;
-                employee.Picture = "~/assets/images/employee.png";
+                employee.Picture = "/assets/images/employee.png";
 
                 EmployeeOperations.CreateEmployee(employee);
 
@@ -48,6 +56,13 @@ namespace ProjectTest.Controllers
             }
 
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Remove("emp_id");
+
+            return RedirectToAction("Login", "Home");
         }
     }
 }
