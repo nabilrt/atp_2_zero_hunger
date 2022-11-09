@@ -247,6 +247,7 @@ namespace ProjectTest.Controllers
             return View(admin);
         }
 
+
         public ActionResult Logout()
         {
             Session.Remove("user_id");

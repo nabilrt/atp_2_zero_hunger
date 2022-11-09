@@ -92,5 +92,24 @@ namespace ProjectTest.Operations
 
             return rests;
         }
+
+        public static bool updateRestaurant(UserRestaurant ur)
+        {
+            var db = new ZeroHungerDBEntities();
+            var user = (from u in db.Users where u.Id == ur.User_Id select u).SingleOrDefault();
+            var restaurant=(from r in db.Restaurants where r.Id==ur.Id select r).SingleOrDefault();
+
+            user.Email = ur.Email;
+            user.Password = ur.Password;
+            restaurant.Name = ur.Name;
+            user.Username= ur.Username;
+
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -1,0 +1,53 @@
+﻿@model ProjectTest.Models.UserEmployee
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_AfterLoginEmployee.cshtml";
+}
+
+<h3>Edit Profile</h3> <br />
+<form method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" value="@Model.Username" autocomplete="Username" placeholder="Username" name="Username">
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" value="@Model.Name" autocomplete="Username" placeholder="Full Name" name="Name">
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="userEmail" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="userEmail" value="@Model.Email" placeholder="Email" name="Email">
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="userPassword" value="@Model.Password" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            
+            <input type="hidden" value="@Model.DOB" class="form-control" id="userPassword" autocomplete="current-password" name="DOB">
+          
+        </div>
+        <div class="col-md-6">
+            <input type="hidden" value="@Model.Gender" name="Gender" />
+            <input type="hidden" value="@Model.User_Id" name="User_Id" />
+            <input type="hidden" value="@Model.Id" name="Id" />
+        </div>
+    </div>
+
+    <br />
+    <div>
+        <input type="submit" class="btn btn-outline-primary me-2 mb-2 mb-md-0" value="Save Changes">
+    </div>
+    
+</form>
+
+

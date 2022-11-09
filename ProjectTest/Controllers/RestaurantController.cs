@@ -61,6 +61,51 @@ namespace ProjectTest.Controllers
         
         }
 
+        public ActionResult ViewProfile()
+        {
+            int id = Convert.ToInt32(Session["rest_id"]);
+            var restaurant = UserOperations.getRestaurantDetails(id);
+            ViewBag.Name = restaurant.Name;
+            ViewBag.Email = restaurant.Email;
+            ViewBag.Picture = restaurant.Picture;
+            return View(restaurant);
+        }
+
+        public ActionResult EditProfile()
+        {
+            int id = Convert.ToInt32(Session["rest_id"]);
+            var restaurant = UserOperations.getRestaurantDetails(id);
+            ViewBag.Name = restaurant.Name;
+            ViewBag.Email = restaurant.Email;
+            ViewBag.Picture = restaurant.Picture;
+            return View(restaurant);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(UserRestaurant restaurant)
+        {
+           if (ModelState.IsValid)
+            {
+                var userRestaurant = new UserRestaurant();
+                userRestaurant.Name = restaurant.Name;
+                userRestaurant.Username = restaurant.Username;
+                userRestaurant.User_Id = restaurant.User_Id;
+                userRestaurant.Id = restaurant.Id;
+                userRestaurant.Email = restaurant.Email;
+                userRestaurant.Password = restaurant.Password;
+
+                if (RestaurantOperations.updateRestaurant(userRestaurant))
+                {
+                    return RedirectToAction("ViewProfile");
+                }
+
+            }
+          
+
+            return View(restaurant);
+
+        }
+
         public ActionResult Logout()
         {
             Session.Remove("rest_id");

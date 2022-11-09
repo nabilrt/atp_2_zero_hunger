@@ -1,0 +1,41 @@
+﻿@model ProjectTest.Models.UserRestaurant
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_AfterLoginRestaurant.cshtml";
+}
+
+<form action="" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" value="@Model.Username" placeholder="Username" name="Username">
+            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <label for="exampleInputUsername1" class="form-label">Restaurant Name</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Restaurant Name" value="@Model.Name" name="Name">
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <label for="userEmail" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="userEmail" value="@Model.Email" placeholder="Email" name="Email">
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <label for="userPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="userPassword" value="@Model.Password" autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" name="Password">
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <input type="hidden" value="@Model.User_Id" name="User_Id" />
+        <input type="hidden" value="@Model.Restaurant_Type" name="Restaurant_Type" />
+        <input type="hidden" value="@Model.Location" name="Location" />
+        </div>
+    </div> <br />
+    <br />
+    <div>
+        <input type="submit" value="Save Changes" class="btn btn-outline-primary" />
+    </div>
+</form>
+

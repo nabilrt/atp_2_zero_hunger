@@ -1,0 +1,71 @@
+﻿@model ProjectTest.Models.CollectionModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AfterLoginRestaurant.cshtml";
+}
+@if (ViewBag.Error == 1)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.MSG
+    </div>
+}
+<h4>Collection Request Form</h4>
+<small>Please Make sure to tick appropiate ones</small>
+<br />
+<br />
+<label class="form-label">Tick from the foods below:</label>
+<br />
+<form action="" method="post">
+    <div class="mb-3">
+        <div class="form-check mb-2">
+            <input type="checkbox" value="Rice" name="foods[]" class="form-check-input" id="checkDefault">
+            <label class="form-check-label" for="checkDefault">
+                Rice
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input type="checkbox" value="Dal" name="foods[]" class="form-check-input" id="checkChecked">
+            <label class="form-check-label" for="checkChecked">
+                Dal
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input type="checkbox" class="form-check-input" id="checkDisabled" value="Beef" name="foods[]">
+            <label class="form-check-label" for="checkDisabled">
+                Beef
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input type="checkbox" class="form-check-input" value="Chicken" name="foods[]">
+            <label class="form-check-label" for="checkCheckedDisabled">
+                Chicken
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input type="checkbox" class="form-check-input" value="Fried Rice" name="foods[]">
+            <label class="form-check-label" for="checkCheckedDisabled">
+                Fried Rice
+            </label>
+        </div>
+        <div class="form-check mb-2">
+            <input type="checkbox" class="form-check-input" value="Fruits" name="foods[]">
+            <label class="form-check-label" for="checkCheckedDisabled">
+                Fruits
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <label class="form-label">Last Preservation Time</label>
+        <input type="date" value="" name="Preserved_Time" id="" class="form-control" />
+        @Html.ValidationMessageFor(model => model.Preserved_Time, "", new { @class = "text-danger" })
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Make Request" class="btn btn-outline-success" />
+        </div>
+    </div>
+
+
+</form>
+
+

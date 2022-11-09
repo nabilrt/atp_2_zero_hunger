@@ -76,10 +76,10 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="collapse" id="emails">
                             <ul class="nav sub-menu">
                                 <li class="nav-item">
-                                    <a href="pages/email/inbox.html" class="nav-link">View Profile</a>
+                                    <a href="@Url.Action("ViewProfile","Employee")" class="nav-link">View Profile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/email/read.html" class="nav-link">Edit Profile</a>
+                                    <a href="@Url.Action("EditProfile","Employee")" class="nav-link">Edit Profile</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,11 +132,11 @@ License: For each use you must have a valid license purchased only from above li
                                     <li class="dropdown-item py-2">
                                         <a href="pages/general/profile.html" class="text-body ms-0">
                                             <i class="me-2 icon-md" data-feather="user"></i>
-                                            <span>Profile</span>
+                                            <span>Change DP</span>
                                         </a>
                                     </li>
                                     <li class="dropdown-item py-2">
-                                        <a href="javascript:;" class="text-body ms-0">
+                                        <a href="@Url.Action("EditProfile","Employee")" class="text-body ms-0">
                                             <i class="me-2 icon-md" data-feather="edit"></i>
                                             <span>Edit Profile</span>
                                         </a>

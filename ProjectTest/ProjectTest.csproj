@@ -127,6 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CollectionController.cs" />
+    <Compile Include="Controllers\CollectionDetailController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
@@ -168,6 +170,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\CollectionDetailModel.cs" />
+    <Compile Include="Models\CollectionModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\RestaurantModel.cs" />
     <Compile Include="Models\UserAdmin.cs" />
@@ -254,9 +258,15 @@
     <Content Include="Views\Home\NotApproved.cshtml" />
     <Content Include="Views\Admin\EditProfile.cshtml" />
     <Content Include="Views\Admin\ViewProfile.cshtml" />
+    <Content Include="Views\Restaurant\ViewProfile.cshtml" />
+    <Content Include="Views\Restaurant\EditProfile.cshtml" />
+    <Content Include="Views\Employee\ViewProfile.cshtml" />
+    <Content Include="Views\Employee\EditProfile.cshtml" />
+    <Content Include="Views\Collection\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CollectionDetail\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

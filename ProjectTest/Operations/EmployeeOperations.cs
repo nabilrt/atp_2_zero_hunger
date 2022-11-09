@@ -98,5 +98,21 @@ namespace ProjectTest.Operations
 
             return emps;
         }
+
+        public static bool updateEmployee(UserEmployee ue)
+        {
+            var db = new ZeroHungerDBEntities();
+            var user=(from u in db.Users where u.Id==ue.User_Id select u).SingleOrDefault();
+            var emp = (from e in db.Employees where e.Id == ue.Id select e).SingleOrDefault();
+            user.Username = ue.Username;
+            user.Email = ue.Email;
+            user.Password = ue.Password;
+            emp.Name = ue.Name;
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

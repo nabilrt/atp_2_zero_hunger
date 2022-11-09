@@ -58,6 +58,48 @@ namespace ProjectTest.Controllers
             return View();
         }
 
+        public ActionResult ViewProfile()
+        {
+            int id = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(id);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+
+            return View(employee);
+
+        }
+
+        public ActionResult EditProfile()
+        {
+            int id = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(id);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(UserEmployee ue)
+        {
+            if (ModelState.IsValid)
+            {
+                if (EmployeeOperations.updateEmployee(ue))
+                {
+                    return RedirectToAction("ViewProfile");
+                }
+            }
+
+            return View(ue);
+        }
+
+
+
+
+        
+
         public ActionResult Logout()
         {
             Session.Remove("emp_id");
