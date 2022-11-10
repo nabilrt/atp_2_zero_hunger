@@ -1,0 +1,52 @@
+﻿@model ProjectTest.Models.CollectionModel
+@{
+    ViewBag.Title = "updateStatus";
+    Layout = "~/Views/Shared/_AfterLoginEmployee.cshtml";
+}
+
+<h4>Update Collection Status</h4> <br />
+<h5>Collection Details</h5>
+<br />
+@foreach (var item in ViewBag.colDetails)
+{
+    <ul>
+        <li>@item.Food_Name</li>
+    </ul>
+}
+
+<br />
+<p><strong>Can be Preserved Until :</strong> @ViewBag.P_time</p>
+<br />
+
+@if (ViewBag.P_time >= DateTime.Now)
+{
+    <span class="badge rounded-pill border border-success text-success">Available</span>
+}
+@if (ViewBag.P_time < DateTime.Now)
+{
+    <span class="badge rounded-pill border border-danger text-danger">Rotten</span>
+
+}
+<br />
+<br />
+<form action="" method="post">
+    <div class="row">
+        <div class="col-md-12"><label class="form-label">Status</label>
+            <select class="form-select" name="Status" value="@Model.Status">
+                <option value="Picked Up" >Picked Up</option>
+                <option value="Delivered">Delivered</option>
+
+            </select>
+        </div>
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <input type="hidden" value="@Model.Preserved_Time" name="Preserved_Time" />
+        <input type="hidden" value="@Model.Employee_Id" name="Employee_Id" />
+        <input type="hidden" value="@Model.Restaurant_Id" name="Restaurant_Id" />
+    </div> <br />
+    <div class="row">
+        <div class="col-md-6">
+            <input type="submit" value="Assign" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>
+

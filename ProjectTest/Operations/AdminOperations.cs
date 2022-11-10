@@ -25,5 +25,21 @@ namespace ProjectTest.Operations
             return false;
 
         }
+
+        public static bool assignEmployee(CollectionModel cm)
+        {
+            var db = new ZeroHungerDBEntities();
+            var collection=(from col in db.Collections where col.Id==cm.Id select col).SingleOrDefault();
+            collection.Employee_Id = cm.Employee_Id;
+            collection.Status = "Accepted";
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+
+            }
+
+            return false;
+            
+        }
     }
 }

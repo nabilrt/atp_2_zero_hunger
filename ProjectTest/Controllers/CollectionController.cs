@@ -65,6 +65,34 @@ namespace ProjectTest.Controllers
             return View(requests);
         }
 
+        public ActionResult updateStatus(int id)
+        {
+            int i = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(i);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+            var cols = CollectionOperations.GetCollection(id);
+            ViewBag.P_time = cols.Preserved_Time;
+            var colls = CollectionDetailOperations.GetCollectionDetails(id);
+            ViewBag.colDetails = colls;
+            var emps = EmployeeOperations.GetApprovedEmployees();
+            ViewBag.employees = emps;
+
+            return View(cols);
+        }
+
+        [HttpPost]
+        public ActionResult updateStatus(CollectionModel cm)
+        {
+            if (CollectionOperations.updateStatus(cm))
+            {
+                return RedirectToAction("AssignedRequests", "Employee");
+            }
+
+            return View(cm);
+        }
+
 
     }
 }

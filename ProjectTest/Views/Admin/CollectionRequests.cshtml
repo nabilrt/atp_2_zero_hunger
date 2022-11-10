@@ -1,0 +1,54 @@
+﻿@model List<ProjectTest.Models.CollectionModel>
+@{
+    ViewBag.Title = "CollectionRequests";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h4>Collection Requests</h4>
+<table class="table table-striped">
+    <tr>
+        <th>Id</th>
+        <th>Restaurant Id</th>
+        <th>Status</th>
+        <th>Preservation Until</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Restaurant_Id</td>
+
+            @if (item.Status == "Pending")
+            {
+                <td><span class="badge rounded-pill border border-warning text-warning">@item.Status</span></td>
+            }
+            @if (item.Status == "Accepted")
+            {
+                <td><span class="badge rounded-pill border border-primary text-primary">@item.Status</span></td>
+            }
+            @if (item.Status == "Picked Up")
+            {
+                <td><span class="badge rounded-pill border border-info text-info">@item.Status</span></td>
+            }
+            @if (item.Status == "Delivered")
+            {
+                <td><span class="badge rounded-pill border border-success text-success">@item.Status</span></td>
+            }
+            <td>@item.Preserved_Time</td>
+            <td><a href="/collectiondetail/details/@item.Id" class="btn btn-outline-info btn-sm"><i data-feather="info"></i></a></td>
+            @if (item.Employee_Id == null)
+            {
+                <td><a href="/admin/assignemployee/@item.Id" class="btn btn-outline-success btn-sm"><i data-feather="user-plus"></i></a></td>
+
+            }
+            @if (item.Employee_Id != null)
+                {
+                    <td></td>
+                }
+        </tr>
+    }
+</table>
+
+

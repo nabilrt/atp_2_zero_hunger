@@ -95,7 +95,16 @@ namespace ProjectTest.Controllers
             return View(ue);
         }
 
-
+        public ActionResult AssignedRequests()
+        {
+            int id = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(id);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+            var reqs = CollectionOperations.GetCollectionsEmployee(id);
+            return View(reqs);
+        }
 
 
         

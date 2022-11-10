@@ -247,6 +247,75 @@ namespace ProjectTest.Controllers
             return View(admin);
         }
 
+        public ActionResult CollectionRequests()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var collections = CollectionOperations.GetAllCollections();
+            return View(collections);
+        }
+
+        public ActionResult AssignEmployee(int id)
+        {
+            int i = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(i);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var cols = CollectionOperations.GetCollection(id);
+            ViewBag.P_time = cols.Preserved_Time;
+            var colls = CollectionDetailOperations.GetCollectionDetails(id);
+            ViewBag.colDetails=colls;
+            var emps = EmployeeOperations.GetApprovedEmployees();
+            ViewBag.employees=emps;
+            return View(cols);
+        }
+
+        [HttpPost]
+        public ActionResult AssignEmployee(CollectionModel cm)
+        {
+            var empId = cm.Employee_Id;
+            if (ModelState.IsValid)
+            {
+                ViewBag.Error = 0;
+                if (empId.ToString() == "")
+                {
+                    ViewBag.Error = 1;
+                    ViewBag.MSG = "Assign an Employee First";
+
+                    return View(cm);
+
+
+                }
+
+                if (AdminOperations.assignEmployee(cm))
+                {
+                    var emp = EmployeeOperations.GetEmployee((int)empId);
+                    var user = UserOperations.GetUser(emp.User_Id);
+                    MailAddress to = new MailAddress(user.Email);
+                    MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                    MailMessage message = new MailMessage(from, to);
+                    message.Subject = "New Delivery Order Assigned";
+                    message.Body = "A new collection request delivery has been assigned to you. Please login to your account to check.";
+                    SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
+                    {
+                        Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                        EnableSsl = true
+
+                    };
+
+                    client.Send(message);
+
+                    return RedirectToAction("CollectionRequests");
+                }
+            }
+
+            return View(cm);
+        }
+
 
         public ActionResult Logout()
         {

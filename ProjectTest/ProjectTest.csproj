@@ -268,6 +268,11 @@
     <Content Include="Views\Collection\Index.cshtml" />
     <Content Include="Views\Collection\RequestHistory.cshtml" />
     <Content Include="Views\CollectionDetail\Index.cshtml" />
+    <Content Include="Views\Admin\CollectionRequests.cshtml" />
+    <Content Include="Views\CollectionDetail\Details.cshtml" />
+    <Content Include="Views\Admin\AssignEmployee.cshtml" />
+    <Content Include="Views\Employee\AssignedRequests.cshtml" />
+    <Content Include="Views\Collection\updateStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

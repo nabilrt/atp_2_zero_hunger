@@ -22,5 +22,21 @@ namespace ProjectTest.Controllers
             var colls=CollectionDetailOperations.GetCollectionDetails(id);
             return View(colls);
         }
+
+        public ActionResult Details(int id)
+        {
+            int i = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(i);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var cols = CollectionOperations.GetCollection(id);
+            ViewBag.P_time = cols.Preserved_Time;
+            var colls = CollectionDetailOperations.GetCollectionDetails(id);
+            return View(colls);
+
+
+
+        }
     }
 }

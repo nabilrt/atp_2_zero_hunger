@@ -99,6 +99,43 @@ namespace ProjectTest.Operations
             return emps;
         }
 
+        public static List<UserEmployee> GetApprovedEmployees()
+        {
+            var db = new ZeroHungerDBEntities();
+            var emps = new List<UserEmployee>();
+            var approved = (from u in db.Users
+                              join e in db.Employees on u.Id equals e.User_Id
+                              where u.Is_Approved == "Yes"
+                              select new
+                              {
+                                  empId = e.Id,
+                                  empUsername = u.Username,
+                                  empEmail = u.Email,
+                                  empName = e.Name,
+                                  empDOB = e.DOB,
+                                  empGender = e.Gender,
+                                  empUserId = e.User_Id,
+                                  app_status = u.Is_Approved
+                              }).ToList();
+
+            foreach (var employee in approved)
+            {
+                emps.Add(new UserEmployee()
+                {
+                    Id = employee.empId,
+                    Username = employee.empUsername,
+                    Email = employee.empEmail,
+                    Name = employee.empName,
+                    DOB = employee.empDOB,
+                    Gender = employee.empGender,
+                    User_Id = employee.empUserId,
+                    Is_Approved = employee.app_status
+                });
+            }
+
+            return emps;
+        }
+
         public static bool updateEmployee(UserEmployee ue)
         {
             var db = new ZeroHungerDBEntities();

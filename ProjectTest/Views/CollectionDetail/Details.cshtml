@@ -1,0 +1,30 @@
+﻿@model List<ProjectTest.Models.CollectionDetailModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h4>Collection Details For ID @Model[0].Collection_Id</h4>
+<br />
+@foreach (var item in Model)
+{
+    <ul>
+        <li>@item.Food_Name</li>
+    </ul>
+}
+
+<br />
+<p><strong>Can be Preserved Until :</strong> @ViewBag.P_time</p>
+<br />
+
+@if (ViewBag.P_time >= DateTime.Now)
+{
+    <span class="badge rounded-pill border border-success text-success">Available</span>
+}
+@if (ViewBag.P_time < DateTime.Now)
+{
+    <span class="badge rounded-pill border border-danger text-danger">Rotten</span>
+
+}
+
+
