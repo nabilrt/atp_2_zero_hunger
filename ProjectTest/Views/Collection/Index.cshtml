@@ -56,8 +56,9 @@
     </div>
     <div class="row">
         <label class="form-label">Last Preservation Time</label>
-        <input type="date" value="" name="Preserved_Time" id="" class="form-control" />
+        <input type="date" value="" name="Preserved_Time" id="p_date" class="form-control" />
         @Html.ValidationMessageFor(model => model.Preserved_Time, "", new { @class = "text-danger" })
+    <input type="hidden" value="@Convert.ToInt32(Session["rest_id"])" name="Restaurant_Id" />
     </div> <br />
     <div class="row">
         <div class="col-md-6">

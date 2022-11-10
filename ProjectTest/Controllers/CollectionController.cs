@@ -22,8 +22,9 @@ namespace ProjectTest.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(FormCollection formval,CollectionModel cm, string[] foods)
+        public ActionResult Index(CollectionModel cm, string[] foods)
         {
+             List<string> allFoods=new List<string>();
             
             if (ModelState.IsValid)
             {
@@ -37,10 +38,33 @@ namespace ProjectTest.Controllers
 
                 }
 
-                return Content(formval["Preserved_Time"]);
+                foreach (string food in foods)
+                {
+                    allFoods.Add(food);
+                }
+
+                if(CollectionOperations.createRequest(cm, allFoods))
+                {
+                    return RedirectToAction("RequestHistory");
+                }
+
+                return Content("");
 
             }
             return View(cm);
         }
+
+        public ActionResult RequestHistory()
+        {
+            int id = Convert.ToInt32(Session["rest_id"]);
+            var restaurant = UserOperations.getRestaurantDetails(id);
+            ViewBag.Name = restaurant.Name;
+            ViewBag.Email = restaurant.Email;
+            ViewBag.Picture = restaurant.Picture;
+            var requests=CollectionOperations.GetCollections(id);
+            return View(requests);
+        }
+
+
     }
 }

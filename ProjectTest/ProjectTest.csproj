@@ -179,6 +179,8 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UserRestaurant.cs" />
     <Compile Include="Operations\AdminOperations.cs" />
+    <Compile Include="Operations\CollectionDetailOperations.cs" />
+    <Compile Include="Operations\CollectionOperations.cs" />
     <Compile Include="Operations\EmployeeOperations.cs" />
     <Compile Include="Operations\RestaurantOperations.cs" />
     <Compile Include="Operations\UserOperations.cs" />
@@ -206,6 +208,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JS\custom.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DB\ZeroHungerDB.edmx">
@@ -263,10 +266,11 @@
     <Content Include="Views\Employee\ViewProfile.cshtml" />
     <Content Include="Views\Employee\EditProfile.cshtml" />
     <Content Include="Views\Collection\Index.cshtml" />
+    <Content Include="Views\Collection\RequestHistory.cshtml" />
+    <Content Include="Views\CollectionDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CollectionDetail\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

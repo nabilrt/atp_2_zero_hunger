@@ -1,0 +1,43 @@
+﻿@model List<ProjectTest.Models.CollectionModel>
+@{
+    ViewBag.Title = "RequestHistory";
+    Layout = "~/Views/Shared/_AfterLoginRestaurant.cshtml";
+}
+
+<h4>My Requests</h4>
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>Id</th>
+        <th>Status</th>
+        <th>Preserved Till</th>
+        <th>Details</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            @if (item.Status == "Pending")
+            {
+                <td><span class="badge rounded-pill border border-warning text-warning">@item.Status</span></td>
+            }
+            @if (item.Status == "Accepted")
+            {
+                <td><span class="badge rounded-pill border border-primary text-primary">@item.Status</span></td>
+            }
+            @if (item.Status == "Picked Up")
+            {
+                <td><span class="badge rounded-pill border border-info text-info">@item.Status</span></td>
+            }
+            @if (item.Status == "Delivered")
+            {
+                <td><span class="badge rounded-pill border border-success text-success">@item.Status</span></td>
+            }
+
+            <td>@item.Preserved_Time</td>
+            <td><a href="/collectiondetail/index/@item.Id" class="btn btn-outline-info"><i data-feather="info"></i></a></td>
+        </tr>
+
+
+    }
+</table>
