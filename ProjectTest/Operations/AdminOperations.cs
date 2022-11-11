@@ -41,5 +41,18 @@ namespace ProjectTest.Operations
             return false;
             
         }
+
+        public static bool updateDP(AdminModel am)
+        {
+            var db = new ZeroHungerDBEntities();
+            var admin = (from a in db.Admins where a.Id == am.Id select a).SingleOrDefault();
+            admin.Picture = am.Picture;
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

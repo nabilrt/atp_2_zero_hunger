@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using ProjectTest.DB;
 using ProjectTest.Validations;
 using ProjectTest.Models;
+using System.IO;
+using System.Web.UI.WebControls;
 
 namespace ProjectTest.Controllers
 {
@@ -316,6 +318,50 @@ namespace ProjectTest.Controllers
             return View(cm);
         }
 
+        public ActionResult changeDP()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            return View(admin);
+        }
+
+        [HttpPost]
+        public ActionResult changeDP(UserAdmin ua,HttpPostedFileBase Picture)
+        {
+            ViewBag.Error = 0;
+            //  if (file != null)
+            if (Picture == null)
+            {
+                ViewBag.Error = 1;
+                ViewBag.ErrorMessage = "Please Select an Image";
+                return View(ua);
+//ModelState.AddModelError("file", "Please select file to upload.");
+            }
+            else
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                Picture.SaveAs(path + Path.GetFileName(Picture.FileName));
+                var userpath="/Uploads/"+Picture.FileName;
+                AdminModel ad = new AdminModel();
+                ad.Id = ua.Id;
+                ad.Picture = userpath;
+                if (AdminOperations.updateDP(ad))
+                {
+                    return RedirectToAction("ViewProfile");
+                }
+
+            }
+         
+            return View(ua);
+        }
 
         public ActionResult Logout()
         {

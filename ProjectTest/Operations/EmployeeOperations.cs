@@ -151,5 +151,18 @@ namespace ProjectTest.Operations
             }
             return false;
         }
+
+        public static bool updateDP(EmployeeModel emp)
+        {
+            var db = new ZeroHungerDBEntities();
+            var employee = (from e in db.Employees where e.Id == emp.Id select e).SingleOrDefault();
+            employee.Picture = emp.Picture;
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

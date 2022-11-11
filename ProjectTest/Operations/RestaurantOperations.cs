@@ -111,5 +111,18 @@ namespace ProjectTest.Operations
 
             return false;
         }
+
+        public static bool updateDP(RestaurantModel rm)
+        {
+            var db = new ZeroHungerDBEntities();
+            var restaurant = (from r in db.Restaurants where r.Id == rm.Id select r).SingleOrDefault();
+            restaurant.Picture=rm.Picture;
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

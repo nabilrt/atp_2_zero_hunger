@@ -273,9 +273,13 @@
     <Content Include="Views\Admin\AssignEmployee.cshtml" />
     <Content Include="Views\Employee\AssignedRequests.cshtml" />
     <Content Include="Views\Collection\updateStatus.cshtml" />
+    <Content Include="Views\Admin\changeDP.cshtml" />
+    <Content Include="Views\Restaurant\changeDP.cshtml" />
+    <Content Include="Views\Employee\changeDP.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

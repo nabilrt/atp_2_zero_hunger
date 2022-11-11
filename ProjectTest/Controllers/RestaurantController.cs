@@ -3,6 +3,7 @@ using ProjectTest.Operations;
 using ProjectTest.Validations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -104,6 +105,51 @@ namespace ProjectTest.Controllers
 
             return View(restaurant);
 
+        }
+
+        public ActionResult changeDP()
+        {
+            int id = Convert.ToInt32(Session["rest_id"]);
+            var restaurant = UserOperations.getRestaurantDetails(id);
+            ViewBag.Name = restaurant.Name;
+            ViewBag.Email = restaurant.Email;
+            ViewBag.Picture = restaurant.Picture;
+            return View(restaurant);
+        }
+
+        [HttpPost]
+        public ActionResult changeDP(UserRestaurant ur, HttpPostedFileBase Picture)
+        {
+            ViewBag.Error = 0;
+            //  if (file != null)
+            if (Picture == null)
+            {
+                ViewBag.Error = 1;
+                ViewBag.ErrorMessage = "Please Select an Image";
+                return View(ur);
+                //ModelState.AddModelError("file", "Please select file to upload.");
+            }
+            else
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                Picture.SaveAs(path + Path.GetFileName(Picture.FileName));
+                var userpath = "/Uploads/" + Picture.FileName;
+                RestaurantModel rm = new RestaurantModel();
+                rm.Id = ur.Id;
+                rm.Picture = userpath;
+                if (RestaurantOperations.updateDP(rm))
+                {
+                    return RedirectToAction("ViewProfile");
+                }
+
+            }
+
+            return View(ur);
         }
 
         public ActionResult Logout()

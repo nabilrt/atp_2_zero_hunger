@@ -2,8 +2,7 @@
 using ProjectTest.Operations;
 using ProjectTest.Validations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
 
@@ -106,8 +105,52 @@ namespace ProjectTest.Controllers
             return View(reqs);
         }
 
+        public ActionResult changeDP()
+        {
+            int id = Convert.ToInt32(Session["emp_id"]);
+            var employee = UserOperations.getEmployeeDetails(id);
+            ViewBag.Name = employee.Name;
+            ViewBag.Email = employee.Email;
+            ViewBag.Picture = employee.Picture;
+            return View(employee);
+        }
 
-        
+        [HttpPost]
+        public ActionResult changeDP(UserEmployee ue, HttpPostedFileBase Picture)
+        {
+            ViewBag.Error = 0;
+            //  if (file != null)
+            if (Picture == null)
+            {
+                ViewBag.Error = 1;
+                ViewBag.ErrorMessage = "Please Select an Image";
+                return View(ue);
+                //ModelState.AddModelError("file", "Please select file to upload.");
+            }
+            else
+            {
+                string path = Server.MapPath("~/Uploads/");
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                Picture.SaveAs(path + Path.GetFileName(Picture.FileName));
+                var userpath = "/Uploads/" + Picture.FileName;
+                EmployeeModel emp = new EmployeeModel();
+                emp.Id = ue.Id;
+                emp.Picture = userpath;
+                if (EmployeeOperations.updateDP(emp))
+                {
+                    return RedirectToAction("ViewProfile");
+                }
+
+            }
+
+            return View(ue);
+        }
+
+
 
         public ActionResult Logout()
         {
