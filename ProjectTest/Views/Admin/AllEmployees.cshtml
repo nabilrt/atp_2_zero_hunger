@@ -1,0 +1,28 @@
+﻿@model List<ProjectTest.Models.UserEmployee>
+@{
+    ViewBag.Title = "AllEmployees";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h4>All Employees</h4>
+<br />
+<table class="table table-responsive">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Picture</th>
+        <th>Work Updates</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td class="py-1"><img src="@item.Picture" height="100" width="100" /></td>
+                    <td><a href="/admin/workupdates/@item.Id" class="btn btn-outline-primary"><i data-feather="info"></i></a></td>
+
+                </tr>
+            }
+</table>

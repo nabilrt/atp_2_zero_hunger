@@ -6,14 +6,16 @@
 @if (ViewBag.Error== 1)
 {
     <div class="alert alert-danger" role="alert">
-        @ViewBag.Error
+        ViewBag.ErrorMessage
     </div>
 }
+
 
 <form class="forms-sample" action="" name="LoginForm" method="post">
     <div class="mb-3">
         <label for="userEmail" class="form-label">Username</label>
-        <input type="text" class="form-control" id="userEmail" placeholder="Username" name="Username">
+        <input type="text" class="form-control" id="userEmail" placeholder="Username" name="Username"
+               value="">
         @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
     </div>
     <div class="mb-3">
@@ -22,7 +24,7 @@
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
     </div>
     <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="authCheck">
+        <input type="checkbox" class="form-check-input" name="remember" value="rem" id="authCheck">
         <label class="form-check-label" for="authCheck">
             Remember me
         </label>

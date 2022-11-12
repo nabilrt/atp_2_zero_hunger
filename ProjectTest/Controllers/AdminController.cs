@@ -363,6 +363,54 @@ namespace ProjectTest.Controllers
             return View(ua);
         }
 
+        public ActionResult AllEmployees()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var empList = UserOperations.getEmployeeDetails();
+           // var workUpdate=CollectionOperations.getWorkUpdates()
+            return View(empList);
+        }
+
+        public ActionResult workUpdates(int id)
+        {
+            int i = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(i);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var workUpdate = CollectionOperations.getWorkUpdates(id);
+            return View(workUpdate);
+
+        }
+
+        public ActionResult AllRestaurants()
+        {
+            int id = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(id);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var resList = UserOperations.getRestaurantDetails();
+            // var workUpdate=CollectionOperations.getWorkUpdates()
+            return View(resList);
+        }
+
+        public ActionResult currentRequests(int id)
+        {
+            int i = Convert.ToInt32(Session["user_id"]);
+            var admin = UserOperations.getAdminDetails(i);
+            ViewBag.Name = admin.Name;
+            ViewBag.Email = admin.Email;
+            ViewBag.Picture = admin.Picture;
+            var workUpdate = CollectionOperations.currentRequests(id);
+            return View(workUpdate);
+
+        }
+
         public ActionResult Logout()
         {
             Session.Remove("user_id");

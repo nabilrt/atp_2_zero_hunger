@@ -137,6 +137,48 @@ namespace ProjectTest.Operations
             return false;
         }
 
-       
+        public static List<CollectionModel> getWorkUpdates(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            var cols=db.Collections.Where(c => c.Employee_Id == id).ToList();
+            var colls=new List<CollectionModel>();  
+
+            foreach (var col in cols)
+            {
+                colls.Add(new CollectionModel()
+                {
+                    Id = col.Id,
+                    Restaurant_Id = col.Restaurant_Id,
+                    Employee_Id = col.Employee_Id,
+                    Status = col.Status,
+                    Preserved_Time = col.Preserved_Time
+                });
+            }
+
+            return colls;
+        }
+
+        public static List<CollectionModel> currentRequests(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            var cols = db.Collections.Where(c => c.Restaurant_Id == id).ToList();
+            var colls = new List<CollectionModel>();
+
+            foreach (var col in cols)
+            {
+                colls.Add(new CollectionModel()
+                {
+                    Id = col.Id,
+                    Restaurant_Id = col.Restaurant_Id,
+                    Employee_Id = col.Employee_Id,
+                    Status = col.Status,
+                    Preserved_Time = col.Preserved_Time
+                });
+            }
+
+            return colls;
+        }
+
+
     }
 }

@@ -1,0 +1,23 @@
+﻿@model List<ProjectTest.Models.CollectionModel>
+@{
+    ViewBag.Title = "workUpdates";
+    Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
+}
+
+<h4>Work Updates for Employee @Model[0].Id</h4>
+<table class="table table-responsive">
+    <tr>
+        <th>#</th>
+        <th>Status</th>
+        <th>Last Preserve Time</th>
+    </tr>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Status</td>
+                    <td>@item.Preserved_Time.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+</table>
+

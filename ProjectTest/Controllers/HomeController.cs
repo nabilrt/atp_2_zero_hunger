@@ -38,9 +38,23 @@ namespace ProjectTest.Controllers
                 {
                     if (details.User_Type == "Admin")
                     {
+                        if(Request["remember"] != null)
+                        {
+                            HttpCookie userInfo = new HttpCookie("userInfo");
+                            userInfo["UserName"] = details.Username;
+                            userInfo["Password"] = details.Password;
+                            userInfo.Expires.Add(new TimeSpan(0, 0, 10));
+                            Response.Cookies.Add(userInfo);
+                            Session["user_id"] = details.Id;
+                            return RedirectToAction("Index", "Admin");
+                        }
+
                         Session["user_id"] = details.Id;
                         return RedirectToAction("Index", "Admin");
+
                     }
+                    
+
                     else if(details.User_Type == "Restaurant" && details.Is_Approved == "Yes")
                     {
                         Session["rest_id"] = details.Id;

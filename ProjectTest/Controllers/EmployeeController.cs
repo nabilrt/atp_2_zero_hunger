@@ -3,8 +3,10 @@ using ProjectTest.Operations;
 using ProjectTest.Validations;
 using System;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static System.Net.WebRequestMethods;
 
 namespace ProjectTest.Controllers
 {
@@ -119,15 +121,32 @@ namespace ProjectTest.Controllers
         public ActionResult changeDP(UserEmployee ue, HttpPostedFileBase Picture)
         {
             ViewBag.Error = 0;
+            ViewBag.ErrorMessage = "";
+            
+
             //  if (file != null)
             if (Picture == null)
             {
                 ViewBag.Error = 1;
-                ViewBag.ErrorMessage = "Please Select an Image";
-                return View(ue);
+                TempData["ErrorMessage"] = "No Image Selected";
+                return RedirectToAction("changeDP");
                 //ModelState.AddModelError("file", "Please select file to upload.");
             }
-            else
+            else if (Picture!=null)
+            {
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var fileExt = System.IO.Path.GetExtension(Picture.FileName).Substring(1);
+
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    ViewBag.Error = 1;
+                    TempData["ErrorMessage"] = "Please Select an Image";
+                    return RedirectToAction("changeDP");
+                }
+
+
+            }
+            else if(Picture!=null)
             {
                 string path = Server.MapPath("~/Uploads/");
                 if (!Directory.Exists(path))

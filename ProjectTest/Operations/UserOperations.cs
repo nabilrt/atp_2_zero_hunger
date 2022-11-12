@@ -129,6 +129,44 @@ namespace ProjectTest.Operations
             return uemployee;
         }
 
+        public static List<UserEmployee> getEmployeeDetails()
+        {
+            var db = new ZeroHungerDBEntities();
+            var uemployee = new List<UserEmployee>();
+
+            var employeeDetails = (from u in db.Users
+                                   join a in db.Employees on u.Id equals a.User_Id
+                                   select new
+                                   {
+                                       employeeEmail = u.Email,
+                                       employeePassword = u.Password,
+                                       employeeUsername = u.Username,
+                                       employeeDOB = a.DOB,
+                                       employeePicture = a.Picture,
+                                       employeeName = a.Name,
+                                       employeeId = a.Id,
+                                       employeeGender = a.Gender,
+                                       employeeUserId=a.User_Id
+                                   }).ToList();
+            foreach (var employee in employeeDetails)
+            {
+                uemployee.Add(new UserEmployee()
+                {
+                    Id=employee.employeeId,
+                    Email=employee.employeeEmail,
+                    Password=employee.employeePassword,
+                    DOB=employee.employeeDOB,
+                    Picture=employee.employeePicture,
+                    Name=employee.employeeName,
+                    User_Id=employee.employeeUserId,
+                    Gender=employee.employeeGender,
+                    Username=employee.employeeUsername
+                });
+            }
+           
+            return uemployee;
+        }
+
         public static UserRestaurant getRestaurantDetails(int id)
         {
             var db = new ZeroHungerDBEntities();
@@ -156,6 +194,43 @@ namespace ProjectTest.Operations
             urestaurant.Name = restaurantDetails.restName;
             urestaurant.Id = restaurantDetails.restId;
             urestaurant.Restaurant_Type = restaurantDetails.restType;
+            return urestaurant;
+        }
+
+        public static List<UserRestaurant> getRestaurantDetails()
+        {
+            var db = new ZeroHungerDBEntities();
+            var urestaurant = new List<UserRestaurant>();
+            var restaurantDetails = (from u in db.Users
+                                     join a in db.Restaurants on u.Id equals a.User_Id
+                                     select new
+                                     {
+                                         restEmail = u.Email,
+                                         restPassword = u.Password,
+                                         restUsername = u.Username,
+                                         restLocation = a.Location,
+                                         restPicture = a.Picture,
+                                         restName = a.Name,
+                                         restId = a.Id,
+                                         restType = a.Restaurant_Type,
+                                         restUserId=a.User_Id
+                                     }).ToList();
+            foreach(var restaurant in restaurantDetails)
+            {
+                urestaurant.Add(new UserRestaurant()
+                {
+                    Id = restaurant.restId,
+                    Name = restaurant.restName,
+                    Username = restaurant.restUsername,
+                    Password = restaurant.restPassword,
+                    Email = restaurant.restEmail,
+                    Location = restaurant.restLocation,
+                    Picture = restaurant.restPicture,
+                    User_Id = restaurant.restUserId,
+                    Restaurant_Type = restaurant.restType
+                });
+            }
+
             return urestaurant;
         }
 

@@ -7,7 +7,7 @@
 @if (ViewBag.Error == 1)
 {
     <div class="alert alert-danger" role="alert">
-        @ViewBag.ErrorMessage
+        @TempData["ErrorMessage"]
     </div>
 }
 <h4>Change Profile Picture</h4>

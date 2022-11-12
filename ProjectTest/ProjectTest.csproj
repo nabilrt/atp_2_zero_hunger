@@ -276,6 +276,10 @@
     <Content Include="Views\Admin\changeDP.cshtml" />
     <Content Include="Views\Restaurant\changeDP.cshtml" />
     <Content Include="Views\Employee\changeDP.cshtml" />
+    <Content Include="Views\Admin\AllEmployees.cshtml" />
+    <Content Include="Views\Admin\workUpdates.cshtml" />
+    <Content Include="Views\Admin\AllRestaurants.cshtml" />
+    <Content Include="Views\Admin\currentRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
