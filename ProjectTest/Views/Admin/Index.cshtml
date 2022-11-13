@@ -4,6 +4,58 @@
     Layout = "~/Views/Shared/_AfterLoginAdmin.cshtml";
 }
 
-<h4>Welcome to Admin Dashboard, @Model.Name</h4>
-
-
+<h4>Welcome to Admin Dashboard, @Model.Name</h4> <br />
+<div class="row">
+    <div class="col-12 col-xl-12 stretch-card">
+        <div class="row flex-grow-1">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Restaurants</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-12 col-xl-5">
+                                <h3 class="mb-2">@ViewBag.ResCount</h3>
+                                <div class="d-flex align-items-baseline">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Employees</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-12 col-xl-5">
+                                <h3 class="mb-2">@ViewBag.EmpCount</h3>
+                                <div class="d-flex align-items-baseline">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <h6 class="card-title mb-0">Pending Requests</h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 col-md-12 col-xl-5">
+                                <h3 class="mb-2">@ViewBag.ReqCount</h3>
+                                <div class="d-flex align-items-baseline">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- row -->

@@ -179,6 +179,28 @@ namespace ProjectTest.Operations
             return colls;
         }
 
+        public static int PendingReqCount(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            return (from r in db.Collections where r.Restaurant_Id == id && r.Status=="Pending" select r).Count();
+        }
 
+        public static int DeliveredReqCount(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            return (from r in db.Collections where r.Restaurant_Id == id && r.Status == "Delivered" select r).Count();
+        }
+
+        public static int AcceptedReqCount(int id)
+        {
+            var db = new ZeroHungerDBEntities();
+            return (from r in db.Collections where r.Restaurant_Id == id && r.Status == "Accepted" select r).Count();
+        }
+
+        public static int PendingDeliveriesCount(int id)
+        {
+            var db=new ZeroHungerDBEntities();
+            return (from r in db.Collections where r.Employee_Id == id && r.Status != "Delivered" select r).Count();
+        }
     }
 }

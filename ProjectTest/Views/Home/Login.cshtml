@@ -23,16 +23,11 @@
         <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="" name="Password">
         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
     </div>
-    <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" name="remember" value="rem" id="authCheck">
-        <label class="form-check-label" for="authCheck">
-            Remember me
-        </label>
-    </div>
     <div>
         <input type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 text-white" value="Login"> <br />
 
     </div>
+    <a href="@Url.Action("ForgotPass","Home")" class="d-block mt-3 text-muted">Forgot Password?</a>
     <a href="@Url.Action("WhoToSignUp","Home")" class="d-block mt-3 text-muted">Not a user? Sign up</a>
 </form>
 

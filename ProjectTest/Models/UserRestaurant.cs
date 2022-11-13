@@ -13,6 +13,7 @@ namespace ProjectTest.Models
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password cannot be empty")]
+        [MinLength(5, ErrorMessage = "Minimum length 3")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Email cannot be empty")]

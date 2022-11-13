@@ -3,8 +3,12 @@ using ProjectTest.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using ProjectTest.Validations;
 
 namespace ProjectTest.Controllers
 {
@@ -38,16 +42,6 @@ namespace ProjectTest.Controllers
                 {
                     if (details.User_Type == "Admin")
                     {
-                        if(Request["remember"] != null)
-                        {
-                            HttpCookie userInfo = new HttpCookie("userInfo");
-                            userInfo["UserName"] = details.Username;
-                            userInfo["Password"] = details.Password;
-                            userInfo.Expires.Add(new TimeSpan(0, 0, 10));
-                            Response.Cookies.Add(userInfo);
-                            Session["user_id"] = details.Id;
-                            return RedirectToAction("Index", "Admin");
-                        }
 
                         Session["user_id"] = details.Id;
                         return RedirectToAction("Index", "Admin");
@@ -84,6 +78,125 @@ namespace ProjectTest.Controllers
         {
             return View();
         }
+
+        public ActionResult ForgotPass()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPass(string email)
+        {
+            ViewBag.Error = 0;
+            if(email == "")
+            {
+                ViewBag.Error = 1;
+                ViewBag.MSG = "Please Enter Something";
+                return View();
+            }
+            else
+            {
+                if (UserOperations.checkEmail(email))
+                {
+                    Random r = new Random();
+                    var otp = r.Next(1000, 9999);
+                    Session["OTP"] =otp;
+                   Session["email"] = email;
+                    MailAddress to = new MailAddress(email);
+                    MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                    MailMessage message = new MailMessage(from, to);
+                    message.Subject = "Password Reset ZH";
+                    message.Body = "Dear Client, Your Password Reset OTP is "+otp;
+                    SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
+                    {
+                        Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                        EnableSsl = true
+
+                    };
+
+                    client.Send(message);
+                  //  ViewBag.Email=email;
+                    return RedirectToAction("OTPVerification");
+                }
+            }
+
+            return View();
+        }
+
+        [ForgotPassAuth]
+        public ActionResult OTPVerification()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ForgotPassAuth]
+        public ActionResult OTPVerification(string otp,string email)
+        {
+
+            ViewBag.Error = 0;
+            if (otp == "")
+            {
+                ViewBag.Error = 1;
+                ViewBag.MSG = "Please Enter Something";
+                return View();
+            }
+            else
+            {
+                if(Convert.ToInt32(otp) == Convert.ToInt32(Session["otp"]))
+                {
+                    ViewBag.Email = email;
+                    return RedirectToAction("ChangePassword");
+
+                }
+                ViewBag.Error = 1;
+                ViewBag.MSG = "Wrong OTP!";
+                return View();
+            }
+          //  return View();
+        }
+
+        [ForgotPassAuth]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ForgotPassAuth]
+        public ActionResult ChangePassword(string password, string email)
+        {
+            ViewBag.Error = 0;
+            if (password == "")
+            {
+                ViewBag.Error = 1;
+                ViewBag.MSG = "Please Enter Something";
+                return View();
+            }
+            else
+            {
+                if (password.Length >= 5)
+                {
+                    if (UserOperations.changePassword(email, password))
+                    {
+                        Session.Remove("otp");
+                        Session.Remove("email");
+                        return RedirectToAction("ChangeConfirmation");
+                    }
+                }
+                ViewBag.Error = 1;
+                ViewBag.MSG = "Password Must Be a Length of 5 or more!";
+                return View();
+            }
+
+        }
+        [ForgotPassAuth]
+        public ActionResult ChangeConfirmation()
+        {
+            return View();
+        }
+
 
         public ActionResult About()
         {

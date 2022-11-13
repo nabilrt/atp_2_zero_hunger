@@ -305,5 +305,53 @@ namespace ProjectTest.Operations
 
             return false;
         }
+
+        public static bool checkEmail(string email)
+        {
+            var db = new ZeroHungerDBEntities();
+            var user=(from u in db.Users where u.Email==email select u).SingleOrDefault();
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static bool changePassword(string email,string password)
+        {
+            var db = new ZeroHungerDBEntities();
+            var user=(from u in db.Users where u.Email==email select u).SingleOrDefault();
+            user.Password = password;
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static int EmployeeCount()
+        {
+            var db = new ZeroHungerDBEntities();
+            var emp=(from e in db.Users where e.User_Type=="Employee" && e.Is_Approved=="Yes" select e).Count();
+
+            return emp;
+        }
+
+        public static int RestaurantCount()
+        {
+            var db = new ZeroHungerDBEntities();
+            var res= (from e in db.Users where e.User_Type == "Restaurant" && e.Is_Approved == "Yes" select e).Count();
+
+            return res;
+        }
+
+        public static int RequestCount()
+        {
+            var db = new ZeroHungerDBEntities();
+            var reqs=(from r in db.Collections where r.Status=="Pending" select r).Count();
+
+            return reqs;
+        }
     }
 }

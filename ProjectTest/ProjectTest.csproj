@@ -187,6 +187,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validations\AdminAuth.cs" />
     <Compile Include="Validations\EmployeeAuth.cs" />
+    <Compile Include="Validations\ForgotPassAuth.cs" />
     <Compile Include="Validations\RestaurantAuth.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="JS\custom.js" />
+    <Content Include="JS\custom1.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="DB\ZeroHungerDB.edmx">
@@ -280,6 +282,11 @@
     <Content Include="Views\Admin\workUpdates.cshtml" />
     <Content Include="Views\Admin\AllRestaurants.cshtml" />
     <Content Include="Views\Admin\currentRequests.cshtml" />
+    <Content Include="Views\Home\ForgotPass.cshtml" />
+    <Content Include="Views\Home\OTPVerification.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Home\ChangeConfirmation.cshtml" />
+    <Content Include="Views\Shared\_LayoutLanding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

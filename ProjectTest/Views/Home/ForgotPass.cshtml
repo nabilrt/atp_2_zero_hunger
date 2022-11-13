@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "ForgotPass";
+    Layout = "~/Views/Shared/_NotApproved.cshtml";
+}
+@if (ViewBag.Error == 1)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.MSG
+    </div>
+}
+<h4>Reset Password</h4>
+<br />
+<form action="" method="post">
+    <div class="mb-3">
+        <label class="form-label">Enter your Email</label>
+        <input type="text" value="" name="email" class="form-control" id="" />
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Send Request" class="btn btn-primary btn-block" />
+
+    </div>
+</form>
+

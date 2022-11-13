@@ -21,16 +21,18 @@ namespace ProjectTest.Controllers
             ViewBag.Name = employee.Name;
             ViewBag.Email = employee.Email;
             ViewBag.Picture = employee.Picture;
-
+            ViewBag.PendingDeliveriesCount = CollectionOperations.PendingDeliveriesCount(id);
             return View(employee);
         }
 
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(UserEmployee uemp)
         {
             if (ModelState.IsValid)

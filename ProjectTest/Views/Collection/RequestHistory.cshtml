@@ -34,7 +34,7 @@
                 <td><span class="badge rounded-pill border border-success text-success">@item.Status</span></td>
             }
 
-            <td>@item.Preserved_Time</td>
+            <td>@item.Preserved_Time.ToString("yyyy-MM-dd")</td>
             <td><a href="/collectiondetail/index/@item.Id" class="btn btn-outline-info"><i data-feather="info"></i></a></td>
         </tr>
 

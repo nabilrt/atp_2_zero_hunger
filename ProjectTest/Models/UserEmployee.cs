@@ -16,6 +16,7 @@ namespace ProjectTest.Models
         [Required(ErrorMessage = "Password is Required")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Email is Required")]
+        [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Please enter correct email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Name is Required")]
         public string Name { get; set; }

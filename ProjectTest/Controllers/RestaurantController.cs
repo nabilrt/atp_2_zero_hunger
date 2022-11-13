@@ -22,16 +22,21 @@ namespace ProjectTest.Controllers
             ViewBag.Name = restaurant.Name;
             ViewBag.Email = restaurant.Email;
             ViewBag.Picture = restaurant.Picture;
+            ViewBag.PendingReqCount = CollectionOperations.PendingReqCount(id);
+            ViewBag.DeliveredReqCount=CollectionOperations.DeliveredReqCount(id);
+            ViewBag.AcceptedReqCount = CollectionOperations.AcceptedReqCount(id);
             return View(restaurant);
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(UserRestaurant ur) {
 
             if (ModelState.IsValid)
@@ -121,13 +126,30 @@ namespace ProjectTest.Controllers
         public ActionResult changeDP(UserRestaurant ur, HttpPostedFileBase Picture)
         {
             ViewBag.Error = 0;
+            ViewBag.ErrorMessage = "";
+
+
             //  if (file != null)
             if (Picture == null)
             {
                 ViewBag.Error = 1;
-                ViewBag.ErrorMessage = "Please Select an Image";
-                return View(ur);
+                TempData["ErrorMessage"] = "No Image Selected";
+                return RedirectToAction("changeDP");
                 //ModelState.AddModelError("file", "Please select file to upload.");
+            }
+            else if (Picture != null)
+            {
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var fileExt = System.IO.Path.GetExtension(Picture.FileName).Substring(1);
+
+                if (!supportedTypes.Contains(fileExt))
+                {
+                    ViewBag.Error = 1;
+                    TempData["ErrorMessage"] = "Please Select an Image";
+                    return RedirectToAction("changeDP");
+                }
+
+
             }
             else
             {
