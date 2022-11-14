@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Credentials\Credentials.cs" />
     <Compile Include="DB\Admin.cs">
       <DependentUpon>ZeroHungerDB.tt</DependentUpon>
     </Compile>

@@ -103,13 +103,13 @@ namespace ProjectTest.Controllers
                     Session["OTP"] =otp;
                    Session["email"] = email;
                     MailAddress to = new MailAddress(email);
-                    MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                    MailAddress from = new MailAddress(Credentials.Credentials.From);
                     MailMessage message = new MailMessage(from, to);
                     message.Subject = "Password Reset ZH";
                     message.Body = "Dear Client, Your Password Reset OTP is "+otp;
                     SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                     {
-                        Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                        Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                         EnableSsl = true
 
                     };

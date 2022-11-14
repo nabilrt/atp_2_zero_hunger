@@ -67,13 +67,13 @@ namespace ProjectTest.Controllers
                 if (rest != null)
                 {
                     MailAddress to = new MailAddress(rest.Email);
-                    MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                    MailAddress from = new MailAddress(Credentials.Credentials.From);
                     MailMessage message = new MailMessage(from, to);
                     message.Subject = "Approval of Joining Zero Hunger";
                     message.Body = "Congratulations your join request has been approved. Thanks for joining us and contributing the society";
                     SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                     {
-                        Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                        Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                         EnableSsl = true
                         
                     };
@@ -101,13 +101,13 @@ namespace ProjectTest.Controllers
             if (rest)
             {
                 MailAddress to = new MailAddress(userHotel.Email);
-                MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                MailAddress from = new MailAddress(Credentials.Credentials.From);
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Rejection of Joining Zero Hunger";
                 message.Body = "Unfortunately your join request cannot be approved. Please ensure you are providing correct informations.";
                 SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                 {
-                    Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                    Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                     EnableSsl = true
 
                 };
@@ -136,13 +136,13 @@ namespace ProjectTest.Controllers
             if (rest != null)
             {
                 MailAddress to = new MailAddress(rest.Email);
-                MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                MailAddress from = new MailAddress(Credentials.Credentials.From);
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Approval of Joining Zero Hunger";
                 message.Body = "Congratulations your join request has been approved. Thanks for joining us and contributing the society";
                 SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                 {
-                    Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                    Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                     EnableSsl = true
 
                 };
@@ -170,13 +170,13 @@ namespace ProjectTest.Controllers
             if (rest)
             {
                 MailAddress to = new MailAddress(userEmployee.Email);
-                MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                MailAddress from = new MailAddress(Credentials.Credentials.From);
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Rejection of Joining Zero Hunger";
                 message.Body = "Unfortunately your join request cannot be approved. Please ensure you are providing correct informations.";
                 SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                 {
-                    Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                    Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                     EnableSsl = true
 
                 };
@@ -301,13 +301,13 @@ namespace ProjectTest.Controllers
                     var emp = EmployeeOperations.GetEmployee((int)empId);
                     var user = UserOperations.GetUser(emp.User_Id);
                     MailAddress to = new MailAddress(user.Email);
-                    MailAddress from = new MailAddress("19-41607-3@student.aiub.edu");
+                    MailAddress from = new MailAddress(Credentials.Credentials.From);
                     MailMessage message = new MailMessage(from, to);
                     message.Subject = "New Delivery Order Assigned";
                     message.Body = "A new collection request delivery has been assigned to you. Please login to your account to check.";
                     SmtpClient client = new SmtpClient("smtp-mail.outlook.com", 587)
                     {
-                        Credentials = new NetworkCredential("19-41607-3@student.aiub.edu", "19417243/Nabil"),
+                        Credentials = new NetworkCredential(Credentials.Credentials.Email, Credentials.Credentials.Password),
                         EnableSsl = true
 
                     };
