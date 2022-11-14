@@ -14,7 +14,7 @@
 }
 
 <br />
-<p><strong>Can be Preserved Until :</strong> @ViewBag.P_time</p>
+<p><strong>Can be Preserved Until :</strong> @ViewBag.P_time.ToString("yyyy-MM-dd")</p>
 <br />
 
 @if (ViewBag.P_time >= DateTime.Now)

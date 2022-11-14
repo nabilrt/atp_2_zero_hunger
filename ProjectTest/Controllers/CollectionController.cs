@@ -1,5 +1,6 @@
 ﻿using ProjectTest.Models;
 using ProjectTest.Operations;
+using ProjectTest.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace ProjectTest.Controllers
     public class CollectionController : Controller
     {
         // GET: Collection
+        [RestaurantAuth]
         public ActionResult Index()
         {
             int id = Convert.ToInt32(Session["rest_id"]);
@@ -22,6 +24,7 @@ namespace ProjectTest.Controllers
         }
 
         [HttpPost]
+        [RestaurantAuth]
         public ActionResult Index(CollectionModel cm, string[] foods)
         {
              List<string> allFoods=new List<string>();
@@ -54,6 +57,7 @@ namespace ProjectTest.Controllers
             return View(cm);
         }
 
+        [RestaurantAuth]
         public ActionResult RequestHistory()
         {
             int id = Convert.ToInt32(Session["rest_id"]);
@@ -65,6 +69,7 @@ namespace ProjectTest.Controllers
             return View(requests);
         }
 
+        [EmployeeAuth]
         public ActionResult updateStatus(int id)
         {
             int i = Convert.ToInt32(Session["emp_id"]);

@@ -1,4 +1,5 @@
 ﻿using ProjectTest.Operations;
+using ProjectTest.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace ProjectTest.Controllers
     public class CollectionDetailController : Controller
     {
         // GET: CollectionDetail
+        [RestaurantAuth]
         public ActionResult Index(int id)
         {
             int i = Convert.ToInt32(Session["rest_id"]);
@@ -23,6 +25,7 @@ namespace ProjectTest.Controllers
             return View(colls);
         }
 
+        [AdminAuth]
         public ActionResult Details(int id)
         {
             int i = Convert.ToInt32(Session["user_id"]);

@@ -21,8 +21,8 @@ namespace ProjectTest.Controllers
         public ActionResult Index()
         {
            
-                int id=Convert.ToInt32(Session["user_id"]);
-                var admin=UserOperations.getAdminDetails(id);
+            int id=Convert.ToInt32(Session["user_id"]);
+            var admin=UserOperations.getAdminDetails(id);
             ViewBag.Name = admin.Name;
             ViewBag.Email = admin.Email;
             ViewBag.Picture = admin.Picture;

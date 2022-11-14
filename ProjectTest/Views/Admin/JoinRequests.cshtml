@@ -44,7 +44,7 @@
         <tr>
             <td>@emps.Name</td>
             <td>@emps.Email</td>
-            <td>@emps.DOB</td>
+            <td>@emps.DOB.ToString("yyyy-MM-dd")</td>
             <td>@emps.Gender</td>
             <td><span class="badge border border-danger text-danger">@emps.Is_Approved</span></td>
             <td><a href="/admin/approveEmployee/@emps.User_Id" class="btn btn-outline-success btn-sm"><i data-feather="check"></i></a> 

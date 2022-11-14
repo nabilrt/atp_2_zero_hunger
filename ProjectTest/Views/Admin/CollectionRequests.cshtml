@@ -36,7 +36,7 @@
             {
                 <td><span class="badge rounded-pill border border-success text-success">@item.Status</span></td>
             }
-            <td>@item.Preserved_Time</td>
+            <td>@item.Preserved_Time.ToString("yyyy-MM-dd")</td>
             <td><a href="/collectiondetail/details/@item.Id" class="btn btn-outline-info btn-sm"><i data-feather="info"></i></a></td>
             @if (item.Employee_Id == null)
             {

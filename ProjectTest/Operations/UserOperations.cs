@@ -135,7 +135,7 @@ namespace ProjectTest.Operations
             var uemployee = new List<UserEmployee>();
 
             var employeeDetails = (from u in db.Users
-                                   join a in db.Employees on u.Id equals a.User_Id
+                                   join a in db.Employees on u.Id equals a.User_Id where u.Is_Approved=="Yes"
                                    select new
                                    {
                                        employeeEmail = u.Email,
@@ -202,7 +202,7 @@ namespace ProjectTest.Operations
             var db = new ZeroHungerDBEntities();
             var urestaurant = new List<UserRestaurant>();
             var restaurantDetails = (from u in db.Users
-                                     join a in db.Restaurants on u.Id equals a.User_Id
+                                     join a in db.Restaurants on u.Id equals a.User_Id where u.Is_Approved=="Yes"
                                      select new
                                      {
                                          restEmail = u.Email,
