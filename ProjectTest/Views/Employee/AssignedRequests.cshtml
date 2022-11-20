@@ -31,15 +31,20 @@
             }
 
             <td>@item.Preserved_Time</td>
+            @if (item.Status == "Accepted")
+            {
+                <td><a href="/collection/updateStatus/@item.Id" class="btn btn-outline-warning btn-sm"><i data-feather="edit"></i></a></td>
+
+            }
             @if (item.Status == "Picked Up")
             {
                 <td><a href="/collection/updateStatus/@item.Id" class="btn btn-outline-warning btn-sm"><i data-feather="edit"></i></a></td>
 
             }
             @if (item.Status == "Delivered")
-                {
-                    <td></td>
-                }
+            {
+                <td></td>
+            }
         </tr>
 
 

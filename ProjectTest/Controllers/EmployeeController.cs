@@ -105,7 +105,7 @@ namespace ProjectTest.Controllers
             ViewBag.Name = employee.Name;
             ViewBag.Email = employee.Email;
             ViewBag.Picture = employee.Picture;
-            var reqs = CollectionOperations.GetCollectionsEmployee(id);
+            var reqs = CollectionOperations.GetCollectionsEmployee(employee.Id);
             return View(reqs);
         }
 
